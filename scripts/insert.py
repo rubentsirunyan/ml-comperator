@@ -1,0 +1,20 @@
+
+import sqlite3
+
+lsts = []
+with open('../../Data/Caravan/ticdata2000.csv', 'r') as f:
+    for line in f:
+        l = []
+        for word in line.split(','):
+            l.append(word)
+        lsts.append(l)
+conn = sqlite3.connect('./demo.db')
+
+
+c = conn.cursor()
+
+for i ,lst in enumerate(lsts):
+    c.execute('INSERT INTO data (`Id`,`M Customer Subtype L0` ,`M Number of houses`,`M Avg size household`,`M Avg age L1`,`M Customer main type L2` ,`M Roman catholic L3` ,`M Protestant L3` ,`M Other religion L3` ,`M No religion L3`,`M Married L3`,`M Living together L3`,`M Other relation L3` ,`M Singles L3`,`M Household without children L3` ,`M Household with children L3`,`M High level education L3` ,`M Medium level education L3` ,`M Lower level education L3`,`M High status L3`,`M Entrepreneur L3` ,`M Farmer L3` ,`M Middle management L3`,`M Skilled labourers L3`,`M Unskilled labourers L3`,`M Social class A L3` ,`M Social class B1 L3`,`M Social class B2 L3`,`M Social class C L3` ,`M Social class D L3` ,`M Rented House L3` ,`M Home owners L3`,`M 1 car L3`,`M 2 cars L3` ,`M No car L3` ,`M National Health Service L3`,`M Private health insurance L3` ,`M Income < 30.000 L3`,`M Income 30-45.000 L3` ,`M Income 45-75.000 L3` ,`M Income 75-122.000 L3`,`M Income > 123.000 L3` ,`M Average income L3` ,`M Purchasing power class L3` ,`Contribution third party insurance (firms) L3` ,`Contribution private third party insurance L4` ,`Contribution third party insurane (agriculture) L4`,`Contribution car policies L4`,`Contribution delivery van policies L4` ,`Contribution motorcycle/scooter policies L4` ,`Contribution lorry policies L4`,`Contribution trailer policies L4`,`Contribution tractor policies L4`,`Contribution agricultural machines policies  L4` ,`Contribution moped policies L4`,`Contribution life insurances L4` ,`Contribution private accident insurance policies L4` ,`Contribution family accidents insurance policies L4` ,`Contribution disability insurance policies L4` ,`Contribution fire policies L4` ,`Contribution surfboard policies L4`,`Contribution boat policies L4` ,`Contribution bicycle policies L4`,`Contribution property insurance policies L4` ,`Contribution social security insurance policies L4`,`Number of private third party insurance 1 - 12 ` ,`Number of third party insurance (firms) 1 - 12 ` ,`Number of third party insurane (agriculture) 1 - 12 `,`Number of car policies 1 - 12 `,`Number of delivery van policies 1 - 12 ` ,`Number of motorcycle or scooter policies 1 - 12 `,`Number of lorry policies 1 - 12 `,`Number of trailer policies 1 - 12 `,`Number of tractor policies 1 - 12 `,`Number of agricultural machines policies 1 - 12 `,`Number of moped policies 1 - 12 `,`Number of life insurances 1 - 12 ` ,`Number of private accident insurance policies 1 - 12 ` ,`Number of family accidents insurance policies 1 - 12 ` ,`Number of disability insurance policies 1 - 12 ` ,`Number of fire policies 1 - 12 ` ,`Number of surfboard policies 1 - 12 `,`Number of boat policies 1 - 12 ` ,`Number of bicycle policies 1 - 12 `,`Number of property insurance policies 1 - 12 ` ,`Number of social security insurance policies 1 - 12 `,`Number of mobile home policies 0 - 1`) VALUES ({},{});'.format(i, ','.join(str(x) for x in lst)))
+
+conn.commit()
+c.close()
