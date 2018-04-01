@@ -18,7 +18,7 @@ class TrainingData():
 
     def get_pretty(self):
         self.c = self.conn.cursor()
-        self.c.execute("SELECT * FROM data")
+        self.c.execute("SELECT * FROM data LIMIT 20")
         self.rows = self.c.fetchall()
         self.temp_list = []
         for row in self.rows:
@@ -42,8 +42,8 @@ class TrainingData():
                     self.temp_row.append(self.c.fetchone()[0])
                 else:
                     self.temp_row.append(str(elem))
-            print self.temp_row
-            return self.temp_row
+            self.temp_list.append(self.temp_row)
+        return self.columns, self.temp_list
 
     def __repr__(self):
         return '<Data %r>' % (self.get_all()[0])
