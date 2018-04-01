@@ -20,6 +20,7 @@
         </style>
     </head>
     <body>
+        <h1> The difference is {{diff}} out of {{length}} or {{error}} %</h1>
         <table>
             <tr>
                 <th>Predictions</th>
@@ -30,6 +31,11 @@
             <tr style="background-color:red">
                 <td>{{ di }} </td>
                 <td>{{ ti }} </td>
+            </tr>
+            {% elif di == 1.0 and ti == 1.0 %}
+            <tr style="background-color:green">
+                    <td>{{ di }} </td>
+                    <td>{{ ti }} </td>
             </tr>
             {% else %}
             <tr>
