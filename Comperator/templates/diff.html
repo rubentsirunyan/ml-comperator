@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Data</title>
+        <style>
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #dddddd;
+                }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Predictions</th>
+                <th>Real Data</th>
+            </tr>
+            {% for di, ti in data %}
+            {% if di != ti %}
+            <tr style="background-color:red">
+                <td>{{ di }} </td>
+                <td>{{ ti }} </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>{{ di }} </td>
+                <td>{{ ti }} </td>
+            </tr>               
+            {% endif %}
+            {% endfor %}
+            </table> 
+        </table>
+    </body>
+</html>
