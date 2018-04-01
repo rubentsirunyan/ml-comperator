@@ -1,5 +1,5 @@
 import sqlite3
-
+import csv
 from Comperator import app
 
 db = '/home/rtsirunyan/Documents/Projects/Comperator/db/demo.db' 
@@ -14,11 +14,13 @@ class TrainingData():
     def get_all(self):
         self.c = self.conn.cursor()
         self.c.execute("SELECT * FROM data")
-        return self.c.fetchall()
+        self.rows = self.c.fetchall()
+        self.columns =  self.rows[0].keys()
+        return self.columns, self.rows
 
-    def get_pretty(self):
+    def get_pretty(self, limit):
         self.c = self.conn.cursor()
-        self.c.execute("SELECT * FROM data LIMIT 20")
+        self.c.execute("SELECT * FROM data LIMIT {}".format(limit))
         self.rows = self.c.fetchall()
         self.temp_list = []
         for row in self.rows:
@@ -47,3 +49,21 @@ class TrainingData():
 
     def __repr__(self):
         return '<Data %r>' % (self.get_all()[0])
+
+class DataCSV():
+
+    def training(self):
+        with open('db/training_data.csv', 'r') as f:
+            self.csv_reader = csv.reader(f,
+                                delimiter=',',
+                                quotechar='|',
+                                quoting=csv.QUOTE_NONNUMERIC)
+        return self.csv_reader
+    
+    def eval(self):
+        with open("db/eval_data.csv",'r') as f:
+            self.csv_reader = csv.reader(f, 
+                                delimiter=',',
+                                quotechar='|',
+                                quoting=csv.QUOTE_NONNUMERIC)
+        return self.csv_reader
