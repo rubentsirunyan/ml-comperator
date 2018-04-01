@@ -52,18 +52,33 @@ class TrainingData():
 
 class DataCSV():
 
-    def training(self):
+    def train_data(self):
+        self.features = []
+        self.labels = []
         with open('db/training_data.csv', 'r') as f:
             self.csv_reader = csv.reader(f,
                                 delimiter=',',
                                 quotechar='|',
                                 quoting=csv.QUOTE_NONNUMERIC)
-        return self.csv_reader
-    
-    def eval(self):
+            for line in self.csv_reader:
+                self.features.append(line[:-1])
+                self.labels.append(line[-1])
+        return self.features, self.labels
+
+    def eval_data(self):
+        self.predictions = []
         with open("db/eval_data.csv",'r') as f:
             self.csv_reader = csv.reader(f, 
                                 delimiter=',',
                                 quotechar='|',
                                 quoting=csv.QUOTE_NONNUMERIC)
-        return self.csv_reader
+            for line in self.csv_reader:
+                self.predictions.append(line)
+        return self.predictions
+
+    def target_data(self):
+        self.targets = []
+        with open("db/targets.txt",'r') as f:  
+            for line in f:
+                self.targets.append(float(line))
+        return self.targets
