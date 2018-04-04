@@ -19,8 +19,12 @@
                 }
         </style>
     </head>
-    <body>
-        <h1> The difference is {{diff}} out of {{length}} or {{error}} %</h1>
+    <body></body>
+        <h1> The difference is {{diff}} out of {{length}} or {{error}}% <br> All Corrects: {{all_correct}}</h1>
+        <h1>True Positive: {{ true_positive }} </h1>
+        <h1>False Positive: {{ false_positive }} </h1>
+        <h1>True Negative: {{ true_negative }} </h1>
+        <h1>False Negative: {{ false_negative }} </h1>  
         <table>
             <tr>
                 <th>Predictions</th>

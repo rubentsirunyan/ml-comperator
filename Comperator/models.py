@@ -1,6 +1,8 @@
 import sqlite3
 import csv
 from Comperator import app
+import numpy as np
+
 
 db = '/home/rtsirunyan/Documents/Projects/Comperator/db/demo.db' 
 # db = app.config['DATABASE']
@@ -63,7 +65,7 @@ class DataCSV():
             for line in self.csv_reader:
                 self.features.append(line[:-1])
                 self.labels.append(line[-1])
-        return self.features, self.labels
+        return np.array(self.features), np.array(self.labels)
 
     def eval_data(self):
         self.predictions = []
@@ -74,7 +76,7 @@ class DataCSV():
                                 quoting=csv.QUOTE_NONNUMERIC)
             for line in self.csv_reader:
                 self.predictions.append(line)
-        return self.predictions
+        return np.array(self.predictions)
 
     def target_data(self):
         self.targets = []
