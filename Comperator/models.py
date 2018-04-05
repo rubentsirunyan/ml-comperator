@@ -19,6 +19,7 @@ class TrainingData():
         self.rows = self.c.fetchall()
         self.columns =  self.rows[0].keys()
         return self.columns, self.rows
+    
 
     def get_pretty(self, limit):
         self.c = self.conn.cursor()
@@ -66,6 +67,38 @@ class DataCSV():
                 self.features.append(line[:-1])
                 self.labels.append(line[-1])
         return np.array(self.features), np.array(self.labels)
+    
+    def train_data_personal(self):
+        self.features = []
+        self.labels = []
+        with open('db/training_data.csv', 'r') as f:
+            self.csv_reader = csv.reader(f,
+                                delimiter=',',
+                                quotechar='|',
+                                quoting=csv.QUOTE_NONNUMERIC)
+            for line in self.csv_reader:
+                self.features.append(line[43:-1])
+                self.labels.append(line[-1])
+        return np.array(self.features), np.array(self.labels)
+
+    def train_data_supersampled(self):
+        self.features = []
+        self.labels = []
+        with open('db/training_data.csv', 'r') as f:
+            self.csv_reader = csv.reader(f,
+                                delimiter=',',
+                                quotechar='|',
+                                quoting=csv.QUOTE_NONNUMERIC)
+            for line in self.csv_reader:
+                if line[-1] == 1.0:
+                    for _ in range(15):
+                        self.features.append(line[:-1])
+                        self.labels.append(line[-1])
+                else:
+                    self.features.append(line[:-1])
+                    self.labels.append(line[-1])
+        return np.array(self.features), np.array(self.labels)
+
 
     def eval_data(self):
         self.predictions = []
@@ -77,6 +110,17 @@ class DataCSV():
             for line in self.csv_reader:
                 self.predictions.append(line)
         return np.array(self.predictions)
+    def eval_data_personal(self):
+        self.predictions = []
+        with open("db/eval_data.csv",'r') as f:
+            self.csv_reader = csv.reader(f, 
+                                delimiter=',',
+                                quotechar='|',
+                                quoting=csv.QUOTE_NONNUMERIC)
+            for line in self.csv_reader:
+                self.predictions.append(line[43:])
+        return np.array(self.predictions)
+
 
     def target_data(self):
         self.targets = []
