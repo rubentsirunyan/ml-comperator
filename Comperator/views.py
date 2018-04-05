@@ -19,7 +19,8 @@ def tain_data_pretty(limit):
     return render_template('data.html', cols=cols, data=data)
 
 @app.route('/home')
-
+def home():
+    return "Hey"
 
 @app.route('/test/<algorithm>')
 def run(algorithm):
