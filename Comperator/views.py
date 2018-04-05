@@ -12,11 +12,11 @@ def mn(x,y):
 def perc(x, y):
     return float(x) / float(y) + 100.0
 
-@app.route('/data/train/<limit>')
-def tain_data_pretty(limit):
-    dt = TrainingData()
-    cols, data = dt.get_pretty(limit)
-    return render_template('data.html', cols=cols, data=data)
+# @app.route('/data/train/<limit>')
+# def tain_data_pretty(limit):
+#     dt = TrainingData()
+#     cols, data = dt.get_pretty(limit)
+#     return render_template('data.html', cols=cols, data=data)
 
 @app.route('/home')
 def home():
