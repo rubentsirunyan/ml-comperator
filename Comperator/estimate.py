@@ -46,17 +46,17 @@ class AnalyseResult():
     def stats(self):
         self.zip_lists = zip(self.tgt, self.prediction)
         self.accuracy =  metrics.accuracy_score(self.tgt, self.prediction) * 100.0
-        self.diff = sum(1 for i, j in self.zip_lists if i != j)
+        self.diff = sum(1 for i, j in zip(self.tgt, self.prediction) if i != j)
         self.all_positives = sum(1 for i in self.tgt if i == 1.0)
-        self.true_positive = sum(1 for i, j in self.zip_lists if i == 1.0 and j == 1.0)
-        self.false_positive = sum(1 for i, j in self.zip_lists if i == 0.0 and j == 1.0)
+        self.true_positive = sum(1 for i, j in zip(self.tgt, self.prediction) if i == 1.0 and j == 1.0)
+        self.false_positive = sum(1 for i, j in zip(self.tgt, self.prediction) if i == 0.0 and j == 1.0)
         self.false_negative = self.all_positives - self.true_positive
         self.true_negative = len(self.tgt) - self.all_positives - self.false_positive
-        self.error_perc = float(self.diff) / float(len(self.zip_lists)) * 100.0
+        self.error_perc = float(self.diff) / float(len(self.tgt)) * 100.0
         return {
             "prediction": self.prediction,
             "tgt": self.tgt,
-            "data": self.zip_lists,
+            "data": list(zip(self.tgt, self.prediction)),
             "accuracy": self.accuracy,
             "diff": self.diff,
             "error_perc": self.error_perc,
