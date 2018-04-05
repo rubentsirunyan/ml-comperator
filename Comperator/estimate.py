@@ -101,13 +101,13 @@ class Parameters():
                 self.best_precision = i
                 self.best_precision_ac = self.accuracy
                 self.best_precision_tp = self.tp
-            print "###############"
-            print i
-            print "Acuracy: ", self.accuracy
-            print self.tp, "From", self.ap
-            print metrics.precision_score(self.tgt, self.prediction)
-            print metrics.f1_score(self.tgt, self.prediction)
-        print "$$$$$$$$$$$$$"
+        #     print "###############"
+        #     print i
+        #     print "Acuracy: ", self.accuracy
+        #     print self.tp, "From", self.ap
+        #     print metrics.precision_score(self.tgt, self.prediction)
+        #     print metrics.f1_score(self.tgt, self.prediction)
+        # print "$$$$$$$$$$$$$"
         self.dct = {
             "Best F1 Score": self.best_f1,
             "With score": self.best_f1_score,
@@ -118,8 +118,8 @@ class Parameters():
             "Best precision Accuracy": self.best_precision_ac,
             "Best precision TP": self.best_precision_tp
         }
-        print "Best F1 Score: ", self.best_f1 
-        print "With score: ", self.best_f1_score
-        print "Best precision Score: ", self.best_precision
-        print "With score: ", self.best_precision_score
+        # print "Best F1 Score: ", self.best_f1 
+        # print "With score: ", self.best_f1_score
+        # print "Best precision Score: ", self.best_precision
+        # print "With score: ", self.best_precision_score
         return self.dct
