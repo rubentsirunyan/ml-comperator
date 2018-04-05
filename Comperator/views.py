@@ -1,10 +1,10 @@
 from flask import render_template, jsonify
 import numpy as np
 
-from estimate import Estimate, Parameters
+from Comperator.estimate import Estimate, Parameters
 from Comperator import app
 from Comperator.models import TrainingData, DataCSV
-from sklearn.model_selection import ParameterGrid
+
 
 def mn(x,y):
     return (float(x) + float(y)) / 2.0
