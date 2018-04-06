@@ -1,4 +1,4 @@
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 import numpy as np
 
 from Comperator.estimate import Estimate, Parameters
@@ -6,30 +6,28 @@ from Comperator import app
 from Comperator.models import TrainingData, DataCSV
 
 
-def mn(x,y):
-    return (float(x) + float(y)) / 2.0
+@app.route('/data/train/<limit>')
+def tain_data_pretty(limit):
+    dt = TrainingData()
+    cols, data = dt.get_pretty(limit)
+    return render_template('data.html', cols=cols, data=data)
 
-def perc(x, y):
-    return float(x) / float(y) + 100.0
-
-# @app.route('/data/train/<limit>')
-# def tain_data_pretty(limit):
-#     dt = TrainingData()
-#     cols, data = dt.get_pretty(limit)
-#     return render_template('data.html', cols=cols, data=data)
-
+@app.route('/')
 @app.route('/home')
 def home():
-    return "Hey"
+    method_list = [func for func in dir(Estimate) if callable(getattr(Estimate, func)) and not func.startswith("__")]
+    return render_template('home.html', methods=method_list)
 
-@app.route('/test/<algorithm>')
+@app.route('/test/<algorithm>',methods=['GET', 'POST'])
 def run(algorithm):
     dt = DataCSV()
     X, y = dt.train_data()
+    w = request.args.get("paramselect")
+    print(w)
     weights = []
     for i in y:
         if i == 1.0:
-            weights.append(1)
+            weights.append(int(w))
         else:
             weights.append(1)
     eval_data = dt.eval_data()
