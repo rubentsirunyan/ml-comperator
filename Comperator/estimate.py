@@ -37,6 +37,14 @@ class Estimate():
         self.stats = AnalyseResult(self.prediction, self.tgt).stats()
         return self.stats    
 
+    def knn(self, k):
+        self.k = k
+        self.params = {'k': k}
+        self.clf = KNeighborsClassifier(**self.params)
+        self.clf.fit(self.X, self.y)
+        self.prediction = self.clf.predict(self.evl)
+        self.stats = AnalyseResult(self.prediction, self.tgt).stats()
+        return self.stats    
 class AnalyseResult():
 
     def __init__(self, prediction, tgt):

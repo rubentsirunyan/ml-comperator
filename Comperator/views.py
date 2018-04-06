@@ -33,7 +33,10 @@ def run(algorithm):
     eval_data = dt.eval_data()
     tgt = dt.target_data()
     est = Estimate(X, y, eval_data, tgt)
-    stats = eval("est.{}(weights)".format(algorithm))
+    if algorithm == 'knn':
+        stats = eval("est.{}(w)".format(algorithm))
+    else:
+        stats = eval("est.{}(weights)".format(algorithm))
     return render_template('diff.html', **stats)
 
 @app.route('/tune/<algorithm>')
