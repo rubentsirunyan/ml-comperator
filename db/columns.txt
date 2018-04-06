@@ -1,46 +1,46 @@
-Customer Subtype L0
-Number of houses
-Avg size household
-Avg age L1
-Customer main type L2
-Roman catholic L3
-Protestant L3
-Other religion L3
-No religion L3
-Married L3
-Living together L3
-Other relation L3
-Singles L3
-Household without children L3
-Household with children L3
-High level education L3
-Medium level education L3
-Lower level education L3
-High status L3
-Entrepreneur L3
-Farmer L3
-Middle management L3
-Skilled labourers L3
-Unskilled labourers L3
-Social class A L3
-Social class B1 L3
-Social class B2 L3
-Social class C L3
-Social class D L3
-Rented House L3
-Home owners L3
-1 car L3
-2 cars L3
-No car L3
-National Health Service L3
-Private health insurance L3
-Income < 30.000 L3
-Income 30-45.000 L3
-Income 45-75.000 L3
-Income 75-122.000 L3
-Income > 123.000 L3
-Average income L3
-Purchasing power class L3
+M Customer Subtype L0
+M Number of houses
+M Avg size household
+M Avg age L1
+M Customer main type L2
+M Roman catholic L3
+M Protestant L3
+M Other religion L3
+M No religion L3
+M Married L3
+M Living together L3
+M Other relation L3
+M Singles L3
+M Household without children L3
+M Household with children L3
+M High level education L3
+M Medium level education L3
+M Lower level education L3
+M High status L3
+M Entrepreneur L3
+M Farmer L3
+M Middle management L3
+M Skilled labourers L3
+M Unskilled labourers L3
+M Social class A L3
+M Social class B1 L3
+M Social class B2 L3
+M Social class C L3
+M Social class D L3
+M Rented House L3
+M Home owners L3
+M 1 car L3
+M 2 cars L3
+M No car L3
+M National Health Service L3
+M Private health insurance L3
+M Income < 30.000 L3
+M Income 30-45.000 L3
+M Income 45-75.000 L3
+M Income 75-122.000 L3
+M Income > 123.000 L3
+M Average income L3
+M Purchasing power class L3
 Contribution third party insurance (firms) L3
 Contribution private third party insurance L4
 Contribution third party insurane (agriculture) L4
