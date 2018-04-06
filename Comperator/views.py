@@ -6,11 +6,24 @@ from Comperator import app
 from Comperator.models import TrainingData, DataCSV
 
 
-@app.route('/data/train/<limit>')
-def tain_data_pretty(limit):
-    dt = TrainingData()
-    cols, data = dt.get_pretty(limit)
-    return render_template('data.html', cols=cols, data=data)
+@app.route('/data/train/')
+def tain_data_pretty():
+    dt = DataCSV()
+    cols, data = dt.get_train_pretty()
+    return render_template('data.html', 
+                           desc="train",
+                           cols=cols,
+                           data=data)
+
+@app.route('/data/test/')
+def test_data_pretty():
+    dt = DataCSV()
+    cols, data = dt.get_test_pretty()
+    return render_template('data.html',
+                           desc="test", 
+                           cols=cols, 
+                           data=data)
+
 
 @app.route('/')
 @app.route('/home')
@@ -32,12 +45,15 @@ def run(algorithm):
             weights.append(1)
     eval_data = dt.eval_data()
     tgt = dt.target_data()
+    cols, pretty_data = dt.get_test_pretty()
     est = Estimate(X, y, eval_data, tgt)
     if algorithm == 'knn':
         stats = eval("est.{}(w)".format(algorithm))
     else:
         stats = eval("est.{}(weights)".format(algorithm))
-    return render_template('diff.html', **stats)
+    stats['cols'] = cols
+    stats['data'] = zip(pretty_data,stats['data'])
+    return render_template('diff.html',alg=algorithm, **stats)
 
 @app.route('/tune/<algorithm>')
 def tune(algorithm):

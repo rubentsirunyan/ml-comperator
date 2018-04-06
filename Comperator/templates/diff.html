@@ -1,70 +1,180 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Data</title>
-        <style>
-                table {
-                    font-family: arial, sans-serif;
-                    border-collapse: collapse;
-                    width: 100%;
-                }
-                
-                td, th {
-                    border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;
-                }
-                
-                tr:nth-child(even) {
-                    background-color: #dddddd;
-                }
-        </style>
-    </head>
-    <body></body>
-        <table>
-            <tr>
-                <th>Նշանակալիություն</th>
-                <th>Ճիշտ Դրական</th>
-                <th>Կեղծ Դրական</th>
-                <th>Ճիշտ Բացասական</th>
-                <th>Կեղծ Բացասական</th>
-            </tr>
-            <tr>
-                <td>{{ 100 -error_perc }}%</td>
-                <td>{{ true_positive }}</td>
-                <td>{{ false_positive }}</td>
-                <td>{{ true_negative }}</td>
-                <td>{{ false_negative }}</td>
-            </tr>               
-      
-        </table>        
-        <!-- <h1> The difference is {{diff}} out of {{length}} or {{error_perc}}% <br> All Corrects: {{all_positives}}</h1>
-        <h1>Ճիշտ Դրական: {{ true_positive }} </h1>
-        <h1>Կեղծ Դրական: {{ false_positive }} </h1>
-        <h1>Ճիշտ Բացասական: {{ true_negative }} </h1>
-        <h1>Կեղծ Բացասական: {{ false_negative }} </h1>   -->
-        <table>
-            <tr>
-                <th>Իրական Տվյալներ</th>
-                <th>Կանխատեսումներ</th>
-            </tr>
-            {% for di, ti in data %}
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;
+    }
+</style>
+<body>
+
+
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <a class="w3-xlarge w3-theme" href='/'>HOME</a> 
+  <div class="w3-center">
+    {% if alg == "svc" %}
+    <h4>Support Vector Machines</h4>
+    {% elif alg == "bnb" %}
+    <h4>Naive Bayes</h4>
+    {% elif alg == "bnb" %}
+    <h4>k Nearest Neighbours</h4>    
+    {% endif %}
+  <h1 class="w3-xxxlarge w3-animate-bottom">ԱՐԴՅՈՒՆՔՆԵՐ</h1>
+    <div class="w3-padding-32">
+      <button onclick="javascript:showData();" class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey" style="font-weight:900;">Տվյալներ</button>
+    </div>
+  </div>
+</header>
+
+
+<div class="w3-row-padding w3-center w3-margin-top">
+    <table class="w3-table-all w3-hoverable w3-card-4">
+        <tr>
+            <th>Նշանակալիություն</th>
+            <th>Ճիշտ Դրական</th>
+            <th>Կեղծ Դրական</th>
+            <th>Ճիշտ Բացասական</th>
+            <th>Կեղծ Բացասական</th>
+        </tr>
+        <tr>
+            <td>{{ 100 - error_perc }}%</td>
+            <td>{{ true_positive }}</td>
+            <td>{{ false_positive }}</td>
+            <td>{{ true_negative }}</td>
+            <td>{{ false_negative }}</td>
+        </tr>               
+    
+    </table>            
+</div>
+
+<div id="data" class="w3-row-padding w3-center w3-margin-top" style="display:none; overflow-x:scroll">
+    <table class="w3-table-all w3-hoverable w3-card-4">            
+        <tr>
+            {% for col in cols %}
+            <th>{{ col }}</th>
+            {% endfor %}    
+        </tr>
+        {% for row, (di, ti) in data %}
             {% if di != ti %}
             <tr style="background-color:red">
-                <td>{{ di }} </td>
+                {% for item in row %}
+                <td>{{ item }}</td>
+                {% endfor %}
                 <td>{{ ti }} </td>
             </tr>
             {% elif di == 1.0 and ti == 1.0 %}
             <tr style="background-color:green">
-                    <td>{{ di }} </td>
-                    <td>{{ ti }} </td>
+                {% for item in row %}
+                <td>{{ item }}</td>
+                {% endfor %}
+                <td>{{ ti }} </td>
             </tr>
             {% else %}
             <tr>
-                <td>{{ di }} </td>
+                {% for item in row %}
+                <td>{{ item }}</td>
+                {% endfor %}
                 <td>{{ ti }} </td>
             </tr>               
             {% endif %}
-            {% endfor %}
-        </table>
-    </body>
+        {% endfor %}
+    </table>            
+</div>
+
+
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+function showData() {
+    div = document.getElementById('data');
+    div.style.display = "block";
+}
+// Side navigation
+function w3_open() {
+    var x = document.getElementById("mySidebar");
+    x.style.width = "100%";
+    x.style.fontSize = "40px";
+    x.style.paddingTop = "10%";
+    x.style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+// Tabs
+function openCity(evt, cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  var activebtn = document.getElementsByClassName("testbtn");
+  for (i = 0; i < x.length; i++) {
+      activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-dark-grey";
+}
+
+var mybtn = document.getElementsByClassName("testbtn")[0];
+mybtn.click();
+
+// Accordions
+function myAccFunc(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// Slideshows
+var slideIndex = 1;
+
+function plusDivs(n) {
+slideIndex = slideIndex + n;
+showDivs(slideIndex);
+}
+
+function showDivs(n) {
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+
+showDivs(1);
+
+// Progress Bars
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 5;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+}
+</script>
+
+</body>
 </html>

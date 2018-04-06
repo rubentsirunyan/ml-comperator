@@ -1,0 +1,86 @@
+Customer Subtype L0
+Number of houses
+Avg size household
+Avg age L1
+Customer main type L2
+Roman catholic L3
+Protestant L3
+Other religion L3
+No religion L3
+Married L3
+Living together L3
+Other relation L3
+Singles L3
+Household without children L3
+Household with children L3
+High level education L3
+Medium level education L3
+Lower level education L3
+High status L3
+Entrepreneur L3
+Farmer L3
+Middle management L3
+Skilled labourers L3
+Unskilled labourers L3
+Social class A L3
+Social class B1 L3
+Social class B2 L3
+Social class C L3
+Social class D L3
+Rented House L3
+Home owners L3
+1 car L3
+2 cars L3
+No car L3
+National Health Service L3
+Private health insurance L3
+Income < 30.000 L3
+Income 30-45.000 L3
+Income 45-75.000 L3
+Income 75-122.000 L3
+Income > 123.000 L3
+Average income L3
+Purchasing power class L3
+Contribution third party insurance (firms) L3
+Contribution private third party insurance L4
+Contribution third party insurane (agriculture) L4
+Contribution car policies L4
+Contribution delivery van policies L4
+Contribution motorcycle/scooter policies L4
+Contribution lorry policies L4
+Contribution trailer policies L4
+Contribution tractor policies L4
+Contribution agricultural machines policies L4
+Contribution moped policies L4
+Contribution life insurances L4
+Contribution private accident insurance policies L4
+Contribution family accidents insurance policies L4
+Contribution disability insurance policies L4
+Contribution fire policies L4
+Contribution surfboard policies L4
+Contribution boat policies L4
+Contribution bicycle policies L4
+Contribution property insurance policies L4
+Contribution social security insurance policies L4
+Number of private third party insurance 1 - 12 
+Number of third party insurance (firms) 1 - 12 
+Number of third party insurane (agriculture) 1 - 12 
+Number of car policies 1 - 12
+Number of delivery van policies 1 - 12
+Number of motorcycle or scooter policies 1 - 12
+Number of lorry policies 1 - 12
+Number of trailer policies 1 - 12
+Number of tractor policies 1 - 12
+Number of agricultural machines policies 1 - 12
+Number of moped policies 1 - 12
+Number of life insurances 1 - 12 
+Number of private accident insurance policies 1 - 12 
+Number of family accidents insurance policies 1 - 12 
+Number of disability insurance policies 1 - 12 
+Number of fire policies 1 - 12 
+Number of surfboard policies 1 - 12
+Number of boat policies 1 - 12
+Number of bicycle policies 1 - 12
+Number of property insurance policies 1 - 12 
+Number of social security insurance policies 1 - 12
+Number of mobile home policies 0 - 1

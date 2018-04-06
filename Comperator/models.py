@@ -2,7 +2,7 @@ import sqlite3
 import csv
 from Comperator import app
 import numpy as np
-
+import json
 
 db = '/home/rtsirunyan/Documents/Projects/Comperator/db/demo.db' 
 # db = app.config['DATABASE']
@@ -54,6 +54,70 @@ class TrainingData():
         return '<Data %r>' % (self.get_all()[0])
 
 class DataCSV():
+
+    def get_train_pretty(self):
+        self.columns = []
+        self.data = []       
+        with open('db/columns.txt', 'r') as f:
+            for line in f:
+                self.columns.append(line)
+        with open('db/training_data.csv', 'r') as f:
+            with open('db/dict.json', 'r') as d:
+                self.dict = json.load(d)
+                self.csv_reader = csv.reader(f,
+                                    delimiter=',',
+                                    quotechar='|',
+                                    quoting=csv.QUOTE_NONNUMERIC)
+                for line in self.csv_reader:
+                    self.temp_row = []
+                    for i, elem in enumerate(line):
+                        if "L0" in self.columns[i]:
+                            self.temp_row.append(self.dict["L0"]["{}".format(int(elem))])
+                        elif "L1" in self.columns[i]:
+                            self.temp_row.append(self.dict["L1"]["{}".format(int(elem))])
+                        elif "L2" in self.columns[i]:
+                            self.temp_row.append(self.dict["L2"]["{}".format(int(elem))])
+                        elif "L3" in self.columns[i]:
+                            self.temp_row.append(self.dict["L3"]["{}".format(int(elem))])
+                        elif "L4" in self.columns[i]:
+                            self.temp_row.append(self.dict["L4"]["{}".format(int(elem))])
+                        else:
+                            self.temp_row.append(str(elem))
+                    self.data.append(self.temp_row)
+        return self.columns, self.data   
+        
+    def get_test_pretty(self):
+        self.columns = []
+        self.data = []       
+        with open('db/columns.txt', 'r') as f:
+            for line in f:
+                self.columns.append(line)
+        with open('db/eval_data.csv', 'r') as f:
+            with open('db/dict.json', 'r') as d:
+                self.dict = json.load(d)
+                self.csv_reader = csv.reader(f,
+                                    delimiter=',',
+                                    quotechar='|',
+                                    quoting=csv.QUOTE_NONNUMERIC)
+                for line in self.csv_reader:
+                    self.temp_row = []
+                    for i, elem in enumerate(line):
+                        if "L0" in self.columns[i]:
+                            self.temp_row.append(self.dict["L0"]["{}".format(int(elem))])
+                        elif "L1" in self.columns[i]:
+                            self.temp_row.append(self.dict["L1"]["{}".format(int(elem))])
+                        elif "L2" in self.columns[i]:
+                            self.temp_row.append(self.dict["L2"]["{}".format(int(elem))])
+                        elif "L3" in self.columns[i]:
+                            self.temp_row.append(self.dict["L3"]["{}".format(int(elem))])
+                        elif "L4" in self.columns[i]:
+                            self.temp_row.append(self.dict["L4"]["{}".format(int(elem))])
+                        else:
+                            self.temp_row.append(str(elem))
+                    self.data.append(self.temp_row)
+                    
+        return self.columns, self.data   
+
 
     def train_data(self):
         self.features = []
